@@ -3,20 +3,41 @@
 //For Back-End Test at PT Solusi Teknologi Nusantara (Nusantech)
 class replacer
 {
-    public function r($string,$space,$integer)
+    public function puzzle($size)
     {
-        $repeat = str_repeat($string,$integer);
-        $repeatSpace = str_repeat($space,14);
-
-        $a = substr_replace($repeat,$space,1,0);
-        $b = substr_replace($repeat,$repeatSpace,1,13);
-        $c = substr_replace($repeat,$space,-1,0);
-        $x = PHP_EOL;
-        for($i = 0; $i < 3; $i++)
+        $puzle ='';
+        $a =0;
+        for($i=1;$i<=$size;$i++)
         {
-            echo $a.$x.$b.$x.$c.$x.$b.$x;
+            if($i%2==1)
+            {
+                $a++;
+            }
+            for($j=1;$j<=$size;$j++)
+            {
+                if($j==1 || $j==($size))
+                {
+                    $puzle .='@';
+                }
+                elseif($i%2==1)
+                {
+                    if(($j==2 && $a%2==1)||($j==($size-1) && $a%2==0))
+                    {
+                        $puzle .='&nbsp;';
+                    }           
+                    else
+                    {
+                        $puzle .='@';
+                    }
+                }  
+                else
+                {
+                    $puzle .='&nbsp;';
+                }
+            }
+            $puzle .='<br/>';
         }
-        echo $a.$x.$b.$x.$c;
+        return $puzle;
     }
 }
 
